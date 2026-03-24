@@ -235,8 +235,11 @@ class Mumuplay:
                     moveY = 450
                     moveX += 158
                 # 冬日
-                pyautogui.moveTo(250, 500, duration=1), pyautogui.click()
-                pyautogui.moveTo(1630, 400, duration=1), pyautogui.click(clicks=6, interval=0.5)
+                pyautogui.moveTo(250, 500, duration=1), pyautogui.click()# 获取脚本所在目录                               
+                script_dir = os.path.dirname(os.path.abspath(__file__))      # 构建图片的绝对路                     
+                image_path = os.path.join(script_dir, 'pic', 'active', '7.bmp')
+                location = pyautogui.locateCenterOnScreen(image_path, confidence=0.7)           # 查找图片并返回中心坐标
+                pyautogui.moveTo(location.x, location.y), pyautogui.click(clicks=6, interval=0.5)
                 pyautogui.moveTo(120, 170, duration=1), pyautogui.click()  # 退出
                 #日常领取
                 pyautogui.moveTo(250, 360, duration=2), pyautogui.click()
