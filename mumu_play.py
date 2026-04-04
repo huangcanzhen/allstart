@@ -208,7 +208,18 @@ class Mumuplay:
                 pyautogui.moveTo(120, 170, duration=0.5)
                 pyautogui.moveRel(0, 260, duration=1), pyautogui.click()  # 向下
                 pyautogui.moveTo(1300, 840, duration=3), pyautogui.click()
+
+                script_dir = os.path.dirname(os.path.abspath(__file__))      # 构建图片的绝对路                     
+                image_path = os.path.join(script_dir, 'pic', 'active', '8.bmp')
+                try:
+                    location = pyautogui.locateCenterOnScreen(image_path, confidence=0.9)       # 查找图片并返回中心坐标
+                    if location:
+                        pyautogui.moveTo(1234,758,duration=1), pyautogui.click()
+                        pyautogui.moveTo(1500, 770, duration=1), pyautogui.click()  # 返回
+                except Exception as e:
+                    pass
                 time.sleep(2)
+                pyautogui.moveTo(1300, 840, duration=2), pyautogui.click()
                 pyautogui.mouseDown()
                 pyautogui.moveRel(-400, -500, duration=2)
                 pyautogui.mouseUp()
@@ -262,9 +273,15 @@ class Mumuplay:
                 pyautogui.moveRel(0, -600, duration=2)  # 向上滑动600像素，持续2秒
                 pyautogui.mouseUp()
                 # pyautogui.moveTo(1600, 360, duration=1), pyautogui.click()  # 5v5坐标
-                pyautogui.moveTo(1600, 550, duration=1), pyautogui.click()  # 5v5坐标
-                pyautogui.moveTo(1555, 850, duration=1), pyautogui.click()  #连续匹配
 
+                # pyautogui.moveTo(250, 500, duration=1), pyautogui.click()# 获取脚本所在目录                               
+                script_dir = os.path.dirname(os.path.abspath(__file__))      # 构建图片的绝对路                     
+                image_path = os.path.join(script_dir, 'pic', 'wc5v5', '3.bmp')
+                location = pyautogui.locateCenterOnScreen(image_path, confidence=0.7)           # 查找图片并返回中心坐标
+                pyautogui.moveTo(location.x, location.y), pyautogui.click()
+                pyautogui.moveRel(190, 128, duration=0.8, tween=pyautogui.easeOutQuad),pyautogui.click()
+                
+                pyautogui.moveTo(1555, 850, duration=1), pyautogui.click()
                 pyautogui.moveTo(1759, 750, duration=1), pyautogui.click()
             self.logger.info(f'Slided at location: {location}')
         except Exception as e:
